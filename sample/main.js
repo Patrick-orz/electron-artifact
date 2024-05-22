@@ -9,7 +9,7 @@ const store = new Store({
     defaults: {
         text: "Write something!",
     }
-})
+});
 
 //Save & load
 function handleSave(event, key = "text", content){

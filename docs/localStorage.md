@@ -6,7 +6,7 @@ How to have your electron app save and access local files.
 
 ## Background Information
 
-Storing information locally for access in different sessions is a basic yet crucial operation. This page would teach you how to create a sample that includes a textarea which saves on edit.
+Storing information locally for access in different sessions is a basic yet crucial operation. This page would teach you how to create a sample that includes a textarea which saves on edit, and restores on app restart.
 
 ### Electron Processes
 
@@ -18,27 +18,27 @@ Before going into real implementation, there are some **logistics** to go over. 
 
 In an electron app, the entrance point, or ```main.js```, runs in the ```Node.js``` environment. ```Node.js``` allows for storing information locally, on the users machine. This would be where the actual storage logic resides.
 
-#### Vanilla ```js``` Process
+#### Vanilla **js** Process
 
-For each webpage (such as ```index.html```), you can link ```js``` files with it, just as you do with web-dev. These ```js``` files would function as you expect, in the vanilla js environment.
+For each webpage (such as ```index.html```), you can link **js** files with it, just as you do with web-dev. These **js** files would function as you expect, in the vanilla **js** environment.
 
-The issue here is, the ```Node.js``` process has no access to webpage information, while the vanilla ```js``` process has access to webpage content, but no access to the ```Node.js``` environment (which includes actions such as saving and loading).
+The issue here is, the ```Node.js``` process has no access to webpage information, while the vanilla **js** process has access to webpage content, but no access to the ```Node.js``` environment (which includes actions such as saving and loading).
 
 This is where **Preload Scripts** come into play.
 
 #### Preload Script
 
-Preload scripts are ```js``` files ran in the vanilla ```js``` context, but has access to ```Node.js``` APIs. It is also executes before any web content loads.
+Preload scripts are **js** files ran in the vanilla **js** context, but has access to ```Node.js``` APIs. It also executes before any web content loads.
 
-This is very powerful, since preload scripts basically grant vanilla ```js``` processes the ability to call ```Node.js``` APIs, solving the mentioned issue.
+This is very powerful, since preload scripts basically grant vanilla **js** processes the ability to call ```Node.js``` APIs, solving the mentioned issue.
 
 ### Roadmap
 
-With the background information in mind, the follow is what we are going to do so our goal of saving and loading locally would be achieved.
+With the background information in mind, the following is what we are going to do so our goal of saving and loading locally would be achieved.
 
 - Create functions in the ```Node.js``` process that allows for saving and loading local files
-- Make these functions callable in the vanilla ```js``` processes through preload scripts
-- Add vanilla ```js``` logic that calls the save load functions when necessary
+- Make these functions callable in the vanilla **js** processes through preload scripts
+- Add vanilla **js** logic that calls the save load functions when necessary
 
 Let's get into it.
 
@@ -112,7 +112,7 @@ The ```appData``` directory:
 > - $XDG_CONFIG_HOME or ~/.config on Linux
 > - ~/Library/Application Support on macOS
 
-Create a new file called ```store.js``` with the above piece of code. The file structure should look like this:
+Create a new file named ```store.js``` with the above piece of code. The file structure should look something like this:
 
 ```
 .
@@ -140,7 +140,7 @@ const store = new Store({
     defaults: {
         text: "Write something!",
     }
-})
+});
 ```
 
 Wrap into functions:
@@ -207,19 +207,19 @@ Similar testing could be done with ```handleLoad()```
 
 **Remember to comment out these lines when done testing!**
 
-## Expose To Vanilla ```js```
+## Expose To Vanilla **js**
 
-The functions are up and working in the ```Node.js``` process, it's time to have them callable in vanilla ```js``` processes.
+The functions are up and working in the ```Node.js``` process, it's time to have them callable in vanilla **js** processes.
 
-This would be done by communicating between ```main.js``` and the preload script through ```ipc```, or inter-process communication. The preload script would then expose the ```handleSave()``` and ```handleLoad()``` function to have them accessible for vanilla ```js``` processes.
+This would be done by communicating between ```main.js``` and the preload script through ```ipc```, or inter-process communication. The preload script would then expose the ```handleSave()``` and ```handleLoad()``` function to have them accessible for vanilla **js** processes.
 
-> More on ipc could be read about [here](https://www.electronjs.org/docs/latest/tutorial/ipc)
+> More on ipc could be read about [here](https://www.electronjs.org/docs/latest/tutorial/ipc).
 
 ### Setup Preload Script
 
 Create a new file named ```preload.js```, this would be our preload script.
 
-File structure should look like this:
+File structure should look something like this:
 ```
 .
 ├── index.html
@@ -232,7 +232,7 @@ File structure should look like this:
 
 Within ```preload.js```, have the following code:
 ```js
-const { contextBridge, ipcRenderer } = require('electron')
+const { contextBridge, ipcRenderer } = require('electron');
 
 window.ipcRenderer = ipcRenderer;
 
@@ -243,7 +243,7 @@ contextBridge.exposeInMainWorld('store', {
 })
 ```
 
-This piece of code creates two new functions that could be ran in vanilla ```js```, ```store.save()``` and ```store.load()```.
+This piece of code creates two new functions that could be ran in vanilla **js**: ```store.save()``` and ```store.load()```.
 These two functions doesn't actually call the save and load funtion we sat up in ```main.js```, they just send a message to ```main.js```.
 
 That message is one of the following, depending on whether save or load is called:
@@ -306,9 +306,9 @@ ipcMain.on('store:save', handleSave);
 ipcMain.handle('store:load', handleLoad);
 ```
 
-For saving, no callback is needed so ```ipcMain.on()``` is enough. For loading the content is wanted, so ```ipcMain.handle()``` which has callback is used.
+For saving, no callback is needed so ```ipcMain.on()``` is enough. For loading, the content is wanted so ```ipcMain.handle()``` which has callback is used.
 
-```main.js``` should look something like:
+```main.js``` should look something like this:
 
 ```js
 //importing modules
@@ -322,7 +322,7 @@ const store = new Store({
     defaults: {
         text: "Write something!",
     }
-})
+});
 
 //Save & load
 function handleSave(event, key = "text", content){
@@ -357,15 +357,15 @@ app.whenReady().then(() => {
 })
 ```
 
-## Vanilla ```js```
+## Vanilla **js**
 
-With everything configured, it's time to take use of the save and load functions.
+With everything configured, it's time to make use of the save and load functions.
 
 ### Linking & Testing
 
-Make another file named ```index.js```
+Create a file named ```index.js```.
 
-File structure:
+File structure should look something like this:
 ```
 .
 ├── index.html
@@ -388,9 +388,11 @@ Go into ```index.js``` and add:
 store.save("text", "vanilla");
 ```
 
-Run the app and you should find
-```{"text":"vanilla"}```
-in ```storage.json``` rather than what was in there previously.
+Run the app and in ```storage.json```, you should find:
+```json
+{"text":"vanilla"}
+```
+rather than what was in there previously.
 
 In ```index.js``` add:
 ```js
@@ -404,8 +406,8 @@ Re-run the app. You should find "vanilla" in the webpage console.
 
 You have now learned about simple saving and loading using electron. Using the save and load function to implement an auto-saving and content-restoring textarea wouldn't be shown here, as it's just **js** and **html** skills, unrelated to electron.
 
-A sample electron app with everything taught in this tutorial along with an implemented auto-save-restore textarea could be found here.
+A sample electron app with everything taught in this tutorial along with an implemented auto-save-restore textarea could be found [here](https://github.com/Patrick-orz/electron-artifact/tree/main/sample).
 
-Note that the 'node_modules' directory is removed in the sample, dependencies would have to be manually installed if you want to run the sample.
+> Note that the ```node_modules``` directory is removed in the sample, dependencies would have to be manually installed if you want to run the sample directly.
 
 Thank you for going through this tutorial, this would be the end!

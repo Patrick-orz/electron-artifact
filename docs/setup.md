@@ -2,7 +2,7 @@
 
 How to setup your electron app.
 
-Official electron doc [here](https://www.electronjs.org/docs/latest/tutorial/quick-start#create-your-application).
+> Official electron doc [here](https://www.electronjs.org/docs/latest/tutorial/quick-start#create-your-application).
 
 ## Prerequisites
 
@@ -18,10 +18,10 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 nvm install 20
 
 # verifies the right Node.js version is in the environment
-node -v # should print `v20.13.1`
+node -v # should print 'vxx.x.x'
 
 # verifies the right NPM version is in the environment
-npm -v # should print `10.5.2`
+npm -v # should print `xx.x.x`
 ```
 
 More methods of downloading [here](https://nodejs.org/en/download/package-manager).
@@ -45,7 +45,7 @@ npm init
 
 ```author``` and ```description``` would be important when you are packing up your app, but it won't be discussed in this tutorial.
 
-After setting up ```npm init```, you should find a ```package.json``` file in your directory, along with several other files or directories.
+After setting up ```npm init```, you should find a ```package.json``` file in your directory, along with several other files and directories.
 
 ```package.json``` should look something like this:
 
@@ -84,13 +84,11 @@ This simple command allows you to start your electron app in development mode.
 
 I personally like to use ```electron --trace-warnings .``` rather than ```electron .```. This outputs the errors and warnings in the console.
 
-Now to run your electron app, simply run:
+Now to run your electron app, simply run, in your project root directory:
 
 ```zh
 npm start
 ```
-
-in your project root directory.
 
 At this point in time, running this command would throw an error as the entrance point ```main.js``` has not been setup yet.
 
@@ -131,20 +129,20 @@ Now if you run ```npm start``` again, no errors should be thrown but nothing wou
 
 Before adding code into ```main.js``` though, we need something to display.
 
-Electron's general purpose is turning webpages into applications. Let's create a sample webpage so we can see actually see something when running the app. Create ```index.html``` in the project root folder, and put the following sample **html** code:
+Electron's general purpose is turning webpages into applications. Let's create a sample webpage so we can actually see something when running the app. Create a file named ```index.html``` in the project root folder, and put the following sample **html** code:
 
 ```html
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-      <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-      <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-      <title>Hello World!</title>
-    </head>
-    <body>
-      <h1>Hello World!</h1>
-    </body>
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <title>Hello World!</title>
+  </head>
+  <body>
+    <h1>Hello World!</h1>
+  </body>
 </html>
 ```
 
