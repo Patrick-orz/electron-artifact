@@ -8,5 +8,5 @@
 - Targetted towards MacOS
 - By Patrick
 
-[GitHub](https://github.com/docsifyjs/docsify/)
+[Github](https://github.com/Patrick-orz/electron-artifact)
 [Get Started](/setup)
