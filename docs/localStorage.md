@@ -406,4 +406,6 @@ You have now learned about simple saving and loading using electron. Using the s
 
 A sample electron app with everything taught in this tutorial along with an implemented auto-save-restore textarea could be found here.
 
+Note that the 'node_modules' directory is removed in the sample, dependencies would have to be manually installed if you want to run the sample.
+
 Thank you for going through this tutorial, this would be the end!
