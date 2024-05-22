@@ -131,7 +131,7 @@ Now if you run ```npm start``` again, no errors should be thrown but nothing wou
 
 Before adding code into ```main.js``` though, we need something to display.
 
-Electron's general purpose is turning webpages into applications. Let's create a sample webpage so we can see actually see something when running the app. create ```index.html``` in the project root folder, and put the following sample **html** code:
+Electron's general purpose is turning webpages into applications. Let's create a sample webpage so we can see actually see something when running the app. Create ```index.html``` in the project root folder, and put the following sample **html** code:
 
 ```html
 <!DOCTYPE html>
@@ -195,7 +195,7 @@ Just to make sure everything is setup correctly, here are a few things to check 
 └── package.json
 ```
 
-```node_modules``` dierctory is omitted due to the excessive amount of content in there, it should still exist in the project directory.
+```node_modules``` directory is omitted due to the excessive amount of content in there, it should still exist in the project directory.
 
 ### Result After ```npm start```
 
