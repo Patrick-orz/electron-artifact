@@ -2,7 +2,7 @@
 
 How to setup your electron app.
 
-Official electron doc [here](https://www.electronjs.org/docs/latest/tutorial/quick-start#create-your-application)
+Official electron doc [here](https://www.electronjs.org/docs/latest/tutorial/quick-start#create-your-application).
 
 ## Prerequisites
 
@@ -131,7 +131,7 @@ Now if you run ```npm start``` again, no errors should be thrown but nothing wou
 
 Before adding code into ```main.js``` though, we need something to display.
 
-Electron's general purpose is turning webpages into applications. Lets create a sample webpage so we can see actually see something when running the app. create ```index.html``` in the project root folder, and put the following sample **html** code:
+Electron's general purpose is turning webpages into applications. Let's create a sample webpage so we can see actually see something when running the app. create ```index.html``` in the project root folder, and put the following sample **html** code:
 
 ```html
 <!DOCTYPE html>
@@ -152,7 +152,7 @@ Any other **html** code would work as well.
 
 ### Link ```main.js``` With ```index.html```
 
-We have a webpage for display now, lets have our app display that webpage on run.
+We have a webpage for display now, let's have our app display that webpage on run.
 In order to do so, we simply have to have ```main.js``` open a window which shows the content of ```index.html``` on run.
 
 Add the following to ```main.js```:
@@ -180,3 +180,27 @@ app.whenReady().then(() => {
 If you run ```npm start``` now, a window with ```index.html``` should render!
 
 You have now learned the basics of electron, congratulations!
+
+## Final Checklist
+
+Just to make sure everything is setup correctly, here are a few things to check off.
+
+### Project Structure
+
+```
+.
+├── index.html
+├── main.js
+├── package-lock.json
+└── package.json
+```
+
+```node_modules``` dierctory is omitted due to the excessive amount of content in there, it should still exist in the project directory.
+
+### Result After ```npm start```
+
+![app image](./media/app.png "app")
+
+### Trouble Shoot
+
+Refer back to specific sections of this tutorial if the result isn't as expected.
