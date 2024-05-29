@@ -5,7 +5,7 @@
 > A short tutorial for setting up electron and implementing local storage
 
 - Simple and to-the-point
-- Targetted towards MacOS
+- Made with [Docsify](https://docsify.js.org/#/)
 - By Patrick
 
 [Github](https://github.com/Patrick-orz/electron-artifact)
